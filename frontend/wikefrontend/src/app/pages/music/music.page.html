@@ -1,0 +1,96 @@
+<ion-header [translucent]="true">
+	<div style="text-align:left;background-color:black;color:var(--ion-color-app);padding-top:0.5%;padding-bottom:0.5%;border-bottom: 1px solid var(--ion-color-app);">
+		<ion-row class="ion-align-items-center">
+			<ion-col size="1" class="ion-align-self-center">
+				<ion-img style="width:100%; float:center" src="assets/images/jukebox_icon.png"></ion-img>
+			</ion-col>
+			<ion-col size="2" class="ion-align-self-center">
+				<p style="font-size:120%;">Wikebox</p>
+			</ion-col>
+			<ion-col size="6" class="ion-align-self-center">
+
+				<!-- Search bar and show results on popover -->
+				<ion-searchbar
+						[(ngModel)]="searchTerm"
+						[debounce]="1000"
+						(ionChange)="searchChanged()"
+						(ionChange)="searchShowpop($event)"
+						placeholder="Search a song"
+						showCancelButton="focus">
+				</ion-searchbar>
+
+			</ion-col>
+			<ion-col offset="1" class="ion-align-self-right">
+				<ion-button fill="clear" (click)="showShare()">Share</ion-button>
+				<ion-button fill="clear" (click)="showPopMenu($event)">{{ userName }}</ion-button>
+			</ion-col>
+		</ion-row>
+	</div>
+</ion-header>
+
+<ion-content>
+	<!-- <div style="text-align:left;background-color:black;color:var(--ion-color-app);;padding-bottom:0.5%;border-bottom: 1px solid var(--ion-color-app);"> -->
+	<ion-grid>
+		<ion-row *ngIf=admin>
+			<ion-col>
+				<!-- Select playlists -->
+				<ion-item>
+					<ion-label>Choose a playlist to populate the queue</ion-label>
+					<ion-select #P placeholder="Playlists" interface="action-sheet" (ionChange)="addPlaylist(P.value)" (ionFocus)="getPlaylists()">
+						<ion-select-option *ngFor="let playlist of (playlists | async)" value={{playlist.value.playlistId}}>{{playlist.value.playlist}}</ion-select-option>
+					</ion-select>
+				</ion-item>
+				<!-- Select device -->
+			</ion-col>
+			<ion-col>
+				<ion-item>
+					<ion-label>Device</ion-label>
+					<ion-select #D [placeholder]="deviceName" interface="alert" (ionChange)="chooseDevice(D.value)" (ionFocus)="getDevices()">
+					<ion-select-option *ngFor="let device of devices" [value]="device">{{device.value.name}}</ion-select-option>
+					</ion-select>
+				</ion-item>
+			</ion-col>
+		</ion-row>
+
+		<ion-row class="ion-align-items-center ion-justify-content-center">
+			<ion-col *ngIf=admin size="0.8">
+				<ion-button expand="block" (click)="playButton()"><ion-icon name="play-outline"></ion-icon></ion-button>
+			</ion-col>
+			<ion-col>
+				<div *ngFor="let current of currentPlaying ">{{current.title}} - {{current.artists}}</div>
+			</ion-col>
+		</ion-row>
+
+		<ion-row>
+			<ion-col>
+
+				<!-- Show songs -->
+				<ion-list *ngFor="let song of queueSongs">
+					<ion-item>
+						<ion-grid>
+							<ion-row class="ion-align-items-center ion-justify-content-center">
+								<ion-col>
+									<ion-label text-wrap>
+										<h2>{{ song.title }}</h2>
+										<h6>{{ song.artists }}</h6>
+									</ion-label>
+								</ion-col>
+								<ion-col size=0.5 >
+										<ion-label>
+											<h2>{{ song.votes }}</h2>
+										</ion-label>
+								</ion-col>
+								<ion-col size=1 >
+									<ion-button color="app" (click)="voteP(song.uri)">
+										+1
+									</ion-button>
+								</ion-col>
+							</ion-row>
+						</ion-grid>
+					</ion-item>
+				</ion-list>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+</ion-content>

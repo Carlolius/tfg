@@ -1,0 +1,6 @@
+django
+django-cors-headers
+django-rest-framework
+django-stub
+djangorestframework_simplejwt
+spotipy

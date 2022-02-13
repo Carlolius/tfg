@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+	<div style="text-align:center;background-color:black;color:var(--ion-color-app);padding-top:0.5%;padding-bottom:0.5%;border-bottom: 1px solid var(--ion-color-app);">
+		<ion-row class="ion-align-items-center ion-justify-content-center">
+			<ion-col size="2" class="ion-align-self-center">
+				<ion-img style="width:80%; float:center" src="assets/images/jukebox_icon.png"></ion-img>
+			</ion-col>
+			<ion-col size="5" class="ion-align-self-center">
+				<p style="font-size:170%;">Welcome to Wikebox</p>
+			</ion-col>
+		</ion-row>
+	</div>
+</ion-header>
+
+<ion-content>
+	<div style="padding-top:2%; padding-bottom:2%">
+		<ion-row class="ion-align-items-center ion-justify-content-center">
+			Already an account?
+		</ion-row>
+		<ion-row class="ion-align-items-center ion-justify-content-center">
+			<ion-button (click)="goToLogin()">Login!</ion-button>
+		</ion-row>
+	</div>
+	<ion-row class="ion-align-items-center ion-justify-content-center">
+		Wikebox it's an online jukebox!<br>
+		It uses any Spotify client to create a jukebox of it.<br>
+		1. Create a Wikebox session.<br>
+		2. Register the admin user.<br>
+		3. Connect the Wikebox with your Spotify.<br>
+		4. Open Spotify in any of your devices.<br>
+		5. Share your session!<br>
+	</ion-row>
+	<div style="padding-top:2%; padding-bottom:2%">
+		<ion-row class="ion-align-items-center ion-justify-content-center">
+			<ion-button (click)="goToSession()">Create new session</ion-button>
+		</ion-row>
+	</div>
+
+	<ion-row>
+		<p> Testing purposes buttons </p>
+	</ion-row>
+	<!-- Testing buttons --> 
+	<ion-button expand="full" (click)="isLoggedIn()">Is logged in?</ion-button>
+	<ion-button expand="full" (click)="logout()">Logout</ion-button>
+	<ion-button expand="full" (click)="clearToken()">Clear JWT</ion-button>
+	<ion-button expand="full" (click)="getData()">Get data</ion-button>
+	<ion-button expand="full" (click)="getSpotifyToken()">Spotify get token</ion-button>
+ 
+</ion-content>

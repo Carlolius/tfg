@@ -1,0 +1,8 @@
+<ion-list>
+	<ion-item *ngFor="let item of (results | async);" (click)="onClick(item.value.uri)">
+		<ion-label>
+			<h2>{{ item.value.song }}</h2>
+			<h6>{{ item.value.artists }}</h6>
+		</ion-label>
+	</ion-item>
+</ion-list>

@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+	<div style="text-align:center;background-color:black;color:var(--ion-color-app);padding-top:0.5%;padding-bottom:0.5%;border-bottom: 1px solid var(--ion-color-app);">
+		<ion-row class="ion-align-items-center ion-justify-content-center">
+			<ion-col size="2" class="ion-align-self-center">
+				<ion-img style="width:80%; float:center" src="assets/images/jukebox_icon.png"></ion-img>
+			</ion-col>
+			<ion-col size="5" class="ion-align-self-center">
+				<p style="font-size:170%;">Welcome to Wikebox</p>
+			</ion-col>
+		</ion-row>
+	</div>
+</ion-header>
+
+<ion-content>
+	<div>
+		<ion-row class="ion-justify-content-center">
+			<ion-col size="5">
+				<div style="text-align:center">Register new user, first one will be the admin.</div>
+				<form #form="ngForm" (ngSubmit)="register(form)" method="post">
+					<ion-item style="margin-top:10%">
+            <ion-input name="username" type="text" placeholder="Username" ngModel required></ion-input>
+					</ion-item>
+					<ion-item>
+            <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
+          </ion-item>
+					<ion-item style="margin-bottom:5%">
+            <ion-input name="confirm" type="password" placeholder="Repeat password" ngModel required></ion-input>
+					</ion-item>
+				</form>
+				<ion-row>
+					<ion-col>
+						<ion-button style="margin-left:10%;margin-right:10%" type="submit" [disabled]="form.invalid" (click)="register(form)" expand="block" size="default" color="app">Register</ion-button>
+					</ion-col>
+				</ion-row>
+			</ion-col>
+		</ion-row>
+	</div>
+</ion-content>
